@@ -1,30 +1,44 @@
-# Astro Starter Kit: Portfolio
+# Mohamed Boughattas — Portfolio
 
-```sh
-npm create astro@latest -- --template portfolio
-```
+Personal portfolio website built with Astro, showcasing my experience as a Senior Data Engineer.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/portfolio/devcontainer.json)
+## Tech Stack
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **Astro** v6 (static output)
+- **TailwindCSS** v4 + **DaisyUI** v5
+- **Lucide** icons
+- Content collections (YAML/MD) driven by CV source files
 
-![portfolio](https://user-images.githubusercontent.com/357379/210779178-a98f0fb7-6b1a-4068-894c-8e1403e26654.jpg)
+## Commands
 
-## 🧞 Commands
+| Command | Action |
+|---|---|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start local dev server at `localhost:4321` |
+| `npm run build` | Build production site to `./dist/` |
+| `npm run preview` | Preview build locally |
 
-All commands are run from the root of the project, from a terminal:
+## Project Structure
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- `src/content/` — Content collections (hero, about, work, projects, contact, general)
+- `src/components/` — Astro components
+- `src/layouts/` — Page layouts
+- `src/pages/` — Routes (index, projects)
+- `src/utils/` — Shared utilities (iconMapper, date helpers)
+- `src/styles/global.css` — Tailwind + DaisyUI config
+- `CV_EN.yaml` / `CV_FR.yaml` — Source CV files (not part of build)
 
-## 👀 Want to learn more?
+## Customization
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Edit content files in `src/content/` to update your information
+2. Modify `src/content/general/index.yaml` to toggle section visibility
+3. Update skills categories in `src/components/Skills.astro`
+4. Replace images in `src/assets/`
+
+## Deploy
+
+Push to `main` branch — GitHub Actions auto-deploys to GitHub Pages.
+
+## License
+
+MIT
