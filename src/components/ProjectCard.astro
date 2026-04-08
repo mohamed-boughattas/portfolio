@@ -10,12 +10,13 @@ interface Props {
 }
 
 const { project } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <article class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
   <a
     class="hover:opacity-80 transition-opacity"
-    href={`/projects/${project.id}`}
+    href={`${base}projects/${project.id}`}
   >
     <figure class="aspect-video">
       <Image
@@ -29,7 +30,7 @@ const { project } = Astro.props;
   </a>
   <div class="card-body">
     <h3 class="card-title hover:text-primary transition-colors">
-      <a href={`/projects/${project.id}`}>{project.data.title}</a>
+      <a href={`${base}projects/${project.id}`}>{project.data.title}</a>
     </h3>
     <time class="text-sm text-base-content/60">
       {formatPeriod(project.data.startDate, project.data.endDate)}
@@ -74,7 +75,7 @@ const { project } = Astro.props;
         )
       }
       <div class="tooltip" data-tip="View project details">
-        <a href={`/projects/${project.id}`} class="btn btn-sm btn-primary">
+        <a href={`${base}projects/${project.id}`} class="btn btn-sm btn-primary">
           <Eye class="size-4" />
         </a>
       </div>
