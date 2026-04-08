@@ -1,0 +1,160 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import FabFlower from "../components/FabFlower.astro";
+import Dock from "../components/Dock.astro";
+import { ClientRouter } from "astro:transitions";
+import { getEntry } from "astro:content";
+
+const generalEntry = await getEntry("general", "index");
+const general = generalEntry.data;
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Mohamed Boughattas - Portfolio",
+  description = "Senior Data Engineer specializing in Data Lakehouse architectures",
+} = Astro.props;
+
+const blurFadeAnimation = {
+  old: {
+    name: "blurFadeOut",
+    duration: "0.3s",
+    easing: "ease-in-out",
+    fillMode: "forwards",
+  },
+  new: {
+    name: "blurFadeIn",
+    duration: "0.3s",
+    easing: "ease-in-out",
+    fillMode: "backwards",
+  },
+};
+
+const pageTransition = {
+  forwards: blurFadeAnimation,
+  backwards: blurFadeAnimation,
+};
+
+const origin = Astro.url.origin;
+---
+
+<!doctype html>
+<html lang="en" transition:animate={pageTransition}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ClientRouter />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={origin} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body class="min-h-screen">
+    <Navbar />
+
+    <slot />
+
+    <div class="fixed top-20 right-4 z-50">
+      <ThemeToggle />
+    </div>
+
+    {
+      general.extraLinksEnabled && (
+        <>
+          <FabFlower
+            extraLinks={general.extraLinks.filter(
+              (link) => link.displayOn !== "dock"
+            )}
+          />
+          <Dock
+            extraLinks={general.extraLinks.filter(
+              (link) => link.displayOn !== "fab"
+            )}
+          />
+        </>
+      )
+    }
+
+    <script>
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".fade-up").forEach((el) => {
+        observer.observe(el);
+      });
+
+      document.addEventListener("astro:after-swap", () => {
+        document.querySelectorAll(".fade-up").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+
+    <style is:global>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @keyframes pageLoadBlurFade {
+        0% {
+          opacity: 0;
+          filter: blur(8px);
+        }
+        100% {
+          opacity: 1;
+          filter: blur(0px);
+        }
+      }
+
+      html {
+        animation: pageLoadBlurFade 0.3s ease-in-out;
+        animation-fill-mode: both;
+      }
+
+      @keyframes blurFadeIn {
+        0% {
+          opacity: 0;
+          filter: blur(10px);
+        }
+        100% {
+          opacity: 1;
+          filter: blur(0px);
+        }
+      }
+
+      @keyframes blurFadeOut {
+        0% {
+          opacity: 1;
+          filter: blur(0px);
+        }
+        100% {
+          opacity: 0;
+          filter: blur(10px);
+        }
+      }
+    </style>
+  </body>
+</html>

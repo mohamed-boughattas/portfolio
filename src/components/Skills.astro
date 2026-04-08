@@ -1,0 +1,125 @@
+---
+interface Skill {
+  name: string;
+  logo?: string;
+  color: string;
+}
+
+interface Category {
+  title: string;
+  skills: Skill[];
+}
+
+const categories: Category[] = [
+  {
+    title: "Data Engineering",
+    skills: [
+      { name: "Python", logo: "python", color: "#3776AB" },
+      { name: "SQL", logo: "postgresql", color: "#4479A1" },
+      { name: "Airflow", logo: "apache-airflow", color: "#017CEE" },
+      { name: "Dagster", color: "#430099" },
+      { name: "Prefect", color: "#2084AB" },
+      { name: "Airbyte", color: "#FF4C3B" },
+      { name: "dlt", logo: "dlt", color: "#4CBB17" },
+      { name: "dbt", logo: "dbt", color: "#FF694B" },
+    ],
+  },
+  {
+    title: "Cloud & Infrastructure",
+    skills: [
+      { name: "AWS", logo: "aws", color: "#FF9900" },
+      { name: "Azure", color: "#0078D4" },
+      { name: "Docker", logo: "docker", color: "#2496ED" },
+      { name: "Terraform", logo: "terraform", color: "#7B42BC" },
+    ],
+  },
+  {
+    title: "Data Processing",
+    skills: [
+      { name: "Polars", logo: "polars", color: "#CD5709" },
+      { name: "Pandas", logo: "pandas", color: "#150458" },
+      { name: "DuckDB", logo: "duckdb", color: "#FFF000" },
+    ],
+  },
+  {
+    title: "Databases & Warehousing",
+    skills: [
+      { name: "PostgreSQL", logo: "postgresql", color: "#4169E1" },
+      { name: "MySQL", logo: "mysql", color: "#4479A1" },
+      { name: "Redshift", logo: "redshift", color: "#00A1C9" },
+      { name: "Snowflake", logo: "snowflake", color: "#29B5E8" },
+    ],
+  },
+  {
+    title: "Data Ops & Quality",
+    skills: [
+      { name: "Pytest", logo: "pytest", color: "#0A9EDC" },
+      { name: "Pandera", color: "#78AC1B" },
+      { name: "Pydantic", logo: "pydantic", color: "#E92063" },
+      { name: "Great Expectations", color: "#FFD700" },
+      { name: "CloudWatch", color: "#F5A623" },
+      { name: "GitHub Actions", logo: "github-actions", color: "#FF3366" },
+    ],
+  },
+  {
+    title: "Analytics & BI",
+    skills: [
+      { name: "Tableau", logo: "tableau", color: "#086FB6" },
+      { name: "Power BI", color: "#F2C811" },
+      { name: "Streamlit", logo: "streamlit", color: "#FF4B4B" },
+    ],
+  },
+];
+
+const categoryColors: Record<string, string> = {
+  "Data Engineering": "#ff6b6b",
+  "Cloud & Infrastructure": "#4ecdc4",
+  "Data Processing": "#ffe66d",
+  "Databases & Warehousing": "#95e1d3",
+  "Data Ops & Quality": "#a8e6cf",
+  "Analytics & BI": "#fd79a8",
+};
+
+function getShieldUrl(skill: Skill): string {
+  const label = skill.name;
+  const color = skill.color.replace("#", "");
+  const logo = skill.logo || "";
+  return `https://img.shields.io/badge/${encodeURIComponent(label)}-${color}?style=flat&logo=${encodeURIComponent(logo)}&logoColor=white`;
+}
+---
+
+<section id="skills" class="py-16 px-4 bg-base-200 fade-up">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4">Skills & Technologies</h2>
+      <p class="text-lg text-base-content/70">
+        Tools and technologies I use to build data solutions
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {categories.map((category) => (
+        <div class="card bg-base-100 shadow-md hover:shadow-lg transition-shadow">
+          <div class="card-body">
+            <h3
+              class="card-title text-lg mb-4"
+              style={{ color: categoryColors[category.title] }}
+            >
+              {category.title}
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {category.skills.map((skill) => (
+                <img
+                  src={getShieldUrl(skill)}
+                  alt={skill.name}
+                  class="h-8"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

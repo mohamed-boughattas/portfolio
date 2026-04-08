@@ -1,0 +1,156 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
+cv:
+  name: Mohamed Boughattas
+  headline: Data Engineer
+  email: mohamed.boughattas.mb@gmail.com
+  phone: "+33 6 21 04 76 63"
+  social_networks:
+    - network: LinkedIn
+      username: mohamedboughattas
+  custom_connections:
+    - placeholder: portfolio
+      url: https://mohamed-boughattas.github.io/portfolio
+      fontawesome_icon: link
+  sections:
+    summary:
+      - Data Engineer (7+ years) specializing in end-to-end scalable data platforms across cloud, covering ingestion, transformation, orchestration and quality, enabling self-service analytics.
+    skills:
+      - "[**Core Engineering:**](#) Python, SQL, Airflow, Dagster, Airbyte, dlt, dbt"
+      - "[**Processing & Storage:**](#) Pandas, Polars, DuckDB, PostgreSQL, Redshift, Synapse, Snowflake"
+      - "[**Cloud & Infrastructure:**](#) AWS, Azure, Terraform, Docker, GitHub Actions, CloudWatch"
+      - "[**Quality & Analytics:**](#) Great Expectations, Pydantic, Pandera, Pytest, Tableau, Power BI"
+    experience:
+      - company: SPAREKA
+        position: Data Engineer
+        start_date: 2021-09
+        end_date: 2025-08
+        location: Paris, France
+        highlights:
+          - Architected an **AWS Data Lakehouse (S3, Redshift)** consolidating multiple data sources for self-service analytics.
+          - Developed high‑performance data pipelines in **Python**, with **schema validation** and **unit testing** ensuring data reliability.
+          - Industrialized the data infrastructure using **Terraform** and orchestrated complex data workflows with **Airflow**.
+          - Implemented analytical data modeling with **dbt**, standardizing business rules and improving data consistency.
+          - Optimized **Redshift** cluster performance (distribution strategies, compression), reducing average query latency by **60%**.
+          - Set up observability and alerting mechanisms **(CloudWatch, Slack)**, cutting incident resolution time by **50%**.
+      - company: ENGIE
+        position: Data Analyst
+        start_date: 2019-03
+        end_date: 2021-08
+        location: Paris, France
+        highlights:
+          - Designed and orchestrated **ETL** pipelines automating the ingestion of data with **Azure Data Factory**.
+          - Refactored and optimized data models and complex **SQL** queries on **Azure Synapse**, reducing processing time by **50%**.
+          - Developed and maintained 15+ **Power BI** dashboards to support financial KPI monitoring for top management.
+      - company: SONY
+        position: Deep Learning Intern
+        start_date: 2017-03
+        end_date: 2017-08
+        location: Stuttgart, Germany
+        highlights:
+          - Implemented **deep learning** models for multispectral illuminant estimation, achieving **85% accuracy**.
+    education:
+      - institution: Tunisia Polytechnic School
+        area: Engineering Diploma, specializing in data science
+        start_date: 2014
+        end_date: 2017
+        location: Tunis, Tunisia
+      - institution: IPEIT
+        area: Preparatory class for engineering schools
+        start_date: 2012
+        end_date: 2014
+        location: Tunis, Tunisia
+    languages:
+      - "**French:** Bilingual (C2)"
+      - "**English:** Fluent (C1)"
+    certifications:
+      - name: "**Datacamp:** [Data Engineer in Python](https://www.datacamp.com/completed/statement-of-accomplishment/track/8a47ebc17b83c58a43974dcb68d82bda634dcc0e)"
+      - name: "**Datacamp:** [Snowflake Foundations](https://www.datacamp.com/completed/statement-of-accomplishment/track/336c6444b4c8bb135dd36a1a9e9e85f5afb9b286)"
+      - name: "**Astronomer:** [Apache Airflow Fundamentals](https://www.credly.com/badges/e021441e-e82d-43b0-9460-e4ffbde3ec0f) / [Apache Airflow DAG Authoring](https://www.credly.com/badges/84181224-daf1-4495-ac6b-8072162dadc3)"
+      - name: "**dbt Labs:** [dbt Fundamentals](https://credentials.getdbt.com/2df6b549-d50a-488b-8106-c38bf3316777)"
+      - name: "**dltHub:** [dlt Fundamentals](https://drive.google.com/file/d/1E0rWviL7ayGIrDDUw3XqL-UEPYXQkfLv/view) / [Deploy dlt pipelines](https://drive.google.com/file/d/12fBs-dF55TbMaMmaqG-SehrqgFDug99S/view)"
+      - name: "**Dagster Labs:** [Dagster Essentials](https://courses.dagster.io/certificates/kfmqpgx4cq) / [Dagster & ETL](https://courses.dagster.io/certificates/fizehkyrc0) / [Dagster & dbt](https://courses.dagster.io/certificates/ijt3v4nmbu)"
+design:
+  theme: classic
+  page:
+    size: a4
+    top_margin: 0.6cm
+    bottom_margin: 0.8cm
+    left_margin: 1.4cm
+    right_margin: 1.4cm
+    show_footer: false
+    show_top_note: false
+  colors:
+    name: rgb(51, 51, 51)
+    headline: rgb(51, 51, 51)
+    connections: rgb(39, 30, 200)
+    section_titles: rgb(51, 51, 51)
+    body: rgb(51, 51, 51)
+    links: rgb(39, 30, 200)
+  typography:
+    font_family:
+      body: Source Sans 3
+      name: Source Sans 3
+      headline: Source Sans 3
+      connections: Source Sans 3
+      section_titles: Source Sans 3
+    font_size:
+      body: 10pt
+      name: 18pt
+      headline: 13pt
+      connections: 10pt
+      section_titles: 16pt
+    bold:
+      name: true
+      headline: false
+      connections: false
+      section_titles: true
+  header:
+    alignment: center
+    space_below_name: 0.3cm
+    space_below_headline: 0.3cm
+    space_below_connections: 0.5cm
+    connections:
+      separator: " | "
+      hyperlink: true
+      show_icons: true
+      display_urls_instead_of_usernames: false
+  section_titles:
+    type: with_partial_line
+    line_thickness: 0.9pt
+    space_above: 5mm
+    space_below: 4mm
+  sections:
+    space_between_regular_entries: 0.7em
+    show_time_spans_in: []
+  entries:
+    date_and_location_width: 5cm
+    side_space: 0cm
+    space_between_columns: 0.1cm
+    short_second_row: false
+    highlights:
+      bullet: "•"
+      space_left: 0.15cm
+      space_above: 0.12cm
+      space_between_items: 2.5mm
+      space_between_bullet_and_text: 0.5em
+  templates:
+    single_date: "MONTH_NAME YEAR"
+    education_entry:
+      degree_column: null
+      main_column: "[**INSTITUTION**](#)\nAREA\nSUMMARY\nHIGHLIGHTS"
+    experience_entry:
+      main_column: "[**COMPANY**](#)\n**POSITION**\nSUMMARY\nHIGHLIGHTS"
+    normal_entry:
+      main_column: "NAME\nSUMMARY\nHIGHLIGHTS"
+locale:
+  language: english
+settings:
+  render_command:
+    output_folder: output
+    typst_path: OUTPUT_FOLDER/CV_Mohamed_Boughattas_EN.typ
+    pdf_path: OUTPUT_FOLDER/CV_Mohamed_Boughattas_EN.pdf
+    dont_generate_markdown: true
+    dont_generate_html: true
+    dont_generate_typst: false
+    dont_generate_pdf: false
+    dont_generate_png: true

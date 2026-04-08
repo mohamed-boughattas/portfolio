@@ -1,0 +1,243 @@
+---
+import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
+import SkillBadge from "./SkillBadge.astro";
+import { formatPeriod, calculateDuration } from "../utils/date";
+
+interface Props {
+  collection: "work";
+  variant: "timeline" | "list";
+  color?: string;
+  backgroundColor?: string;
+  icon: any;
+  sectionTitle: string;
+}
+
+const {
+  collection,
+  variant,
+  color = "primary",
+  backgroundColor = "base-200",
+  icon,
+  sectionTitle,
+} = Astro.props;
+
+const IconComponent = icon;
+
+const entries = await getCollection(collection);
+
+const sortedEntries = entries.sort(
+  (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime(),
+);
+
+const entriesWithContent = await Promise.all(
+  sortedEntries.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { entry, Content };
+  }),
+);
+---
+
+<section id={collection} class={`py-16 px-4 bg-${backgroundColor} fade-up`}>
+  <div class="mx-auto max-w-4xl">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold">{sectionTitle}</h2>
+    </div>
+
+    {
+      variant === "timeline" ? (
+        <>
+          <ul class="timeline timeline-vertical timeline-snap-icon">
+            {entriesWithContent.map(({ entry, Content }, index) => (
+              <li>
+                {index > 0 && <hr class="bg-base-100" />}
+                <div class="timeline-middle">
+                  <IconComponent class={`size-5 text-${color} mx-3 my-1`} />
+                </div>
+                <div
+                  class={`timeline-${index % 2 === 0 ? "start" : "end"} max-w-2xs pt-3 mb-10`}
+                >
+                  <time
+                    class={`font-mono text-sm text-base-content/70 block italic ${index % 2 === 0 ? "text-end" : ""}`}
+                  >
+                    {formatPeriod(entry.data.startDate, entry.data.endDate)}
+                    {calculateDuration(
+                      entry.data.startDate,
+                      entry.data.endDate,
+                    ) && (
+                      <span class="ml-1 text-base-content/50">
+                        {calculateDuration(
+                          entry.data.startDate,
+                          entry.data.endDate,
+                        )}
+                      </span>
+                    )}
+                  </time>
+                  <div class="card bg-base-100 shadow-xl mt-2">
+                    <div class="card-body">
+                      <div class="flex items-center gap-4">
+                        {entry.data.logo && (
+                          <div class="avatar">
+                            <div class="w-12 mask mask-squircle">
+                              <Image
+                                src={entry.data.logo}
+                                alt={entry.data.title}
+                                inferSize={true}
+                              />
+                            </div>
+                          </div>
+                        )}
+                        <div class="flex-1">
+                          <h3 class="card-title">{entry.data.title}</h3>
+                          <p class={`text-${color} font-semibold`}>
+                            {entry.data.subtitle}
+                          </p>
+                          {entry.data.location && (
+                            <p class="text-sm text-base-content/60">
+                              {entry.data.location}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <div class="card-actions justify-end mt-2">
+                        <button
+                          class="btn btn-ghost btn-sm"
+                          onclick={`document.getElementById('modal-${entry.id}').showModal()`}
+                        >
+                          Read more
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {index < entriesWithContent.length - 1 && (
+                  <hr class="bg-base-100" />
+                )}
+              </li>
+            ))}
+          </ul>
+
+          {entriesWithContent.map(({ entry, Content }) => (
+            <dialog id={`modal-${entry.id}`} class="modal">
+              <div class="modal-box max-w-2xl">
+                <div class="flex items-center gap-4 mb-4">
+                  {entry.data.logo && (
+                    <div class="avatar">
+                      <div class="w-16 mask mask-squircle">
+                        <Image
+                          src={entry.data.logo}
+                          alt={entry.data.title}
+                          inferSize={true}
+                        />
+                      </div>
+                    </div>
+                  )}
+                  <div>
+                    <h3 class="font-bold text-xl">{entry.data.title}</h3>
+                    <p class={`text-${color} font-semibold`}>
+                      {entry.data.subtitle}
+                    </p>
+                    {entry.data.location && (
+                      <p class="text-sm text-base-content/60">
+                        {entry.data.location}
+                      </p>
+                    )}
+                    <p class="text-sm text-base-content/70 font-mono italic mt-1">
+                      {formatPeriod(entry.data.startDate, entry.data.endDate)}
+                      {calculateDuration(
+                        entry.data.startDate,
+                        entry.data.endDate,
+                      ) && (
+                        <span class="ml-1 text-base-content/50">
+                          {calculateDuration(
+                            entry.data.startDate,
+                            entry.data.endDate,
+                          )}
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+
+                {entry.data.skills && entry.data.skills.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {entry.data.skills.map((skill: string) => (
+                      <SkillBadge skill={skill} />
+                    ))}
+                  </div>
+                )}
+
+                <div class="prose prose-sm max-w-none text-base-content/80">
+                  <Content />
+                </div>
+
+                <div class="modal-action">
+                  <form method="dialog">
+                    <button class="btn">Close</button>
+                  </form>
+                </div>
+              </div>
+              <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+              </form>
+            </dialog>
+          ))}
+        </>
+      ) : (
+        <ul class="list bg-base-100 rounded-box shadow-lg">
+          {entriesWithContent.map(({ entry, Content }, index) => (
+            <li class="border-b hover:opacity-85 transition-opacity border-base-300 last:border-b-0">
+              <details class="collapse">
+                <summary class="collapse-title pe-5">
+                  <div class="list-row p-0 items-center after:hidden">
+                    <div>
+                      {entry.data.logo && (
+                        <div class="avatar">
+                          <div class="w-10 mask mask-squircle">
+                            <Image
+                              src={entry.data.logo}
+                              alt={entry.data.title}
+                              inferSize={true}
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div>
+                      <h3 class="font-bold text-lg">{entry.data.title}</h3>
+                      <p class={`text-${color} font-semibold text-sm`}>
+                        {entry.data.subtitle}
+                      </p>
+                    </div>
+
+                    <div class="text-sm text-base-content/70 font-mono whitespace-nowrap">
+                      {formatPeriod(entry.data.startDate, entry.data.endDate)}
+                      {calculateDuration(
+                        entry.data.startDate,
+                        entry.data.endDate,
+                      ) && (
+                        <span class="ml-1 text-base-content/50">
+                          {calculateDuration(
+                            entry.data.startDate,
+                            entry.data.endDate,
+                          )}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </summary>
+
+                <div class="collapse-content">
+                  <div class="prose prose-sm max-w-none">
+                    <Content />
+                  </div>
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</section>
