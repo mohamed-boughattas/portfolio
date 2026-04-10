@@ -17,7 +17,7 @@ skills:
   - Tableau
 ---
 
-Deployed a cloud data lakehouse architecture consolidating multiple data sources for self-service analytics.
+Deployed a cloud **data lakehouse** architecture consolidating multiple data sources for self-service analytics.
 
 Developed high-performance data pipelines in **Python**, with **schema validation** and **unit testing** ensuring data reliability.
 
