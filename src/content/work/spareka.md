@@ -3,7 +3,6 @@ title: SPAREKA
 subtitle: Data Engineer
 location: Paris, France
 startDate: 2021-09-01
-endDate: 2025-08-01
 link: https://spareka.com
 skills:
   - Python
