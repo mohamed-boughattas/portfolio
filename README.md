@@ -37,7 +37,7 @@ Personal portfolio website built with Astro, showcasing my experience as a Senio
 
 ## Deploy
 
-Push to `main` branch — GitHub Actions auto-deploys to GitHub Pages.
+Push to `main` branch — GitHub Actions auto-deploys to GitHub Pages at [www.mohamedboughattas.com](https://www.mohamedboughattas.com).
 
 ## License
 
