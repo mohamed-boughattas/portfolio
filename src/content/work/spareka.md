@@ -11,17 +11,21 @@ skills:
   - dbt
   - AWS
   - Terraform
-  - Pandera
+  - Great Expectations
   - Docker
   - Tableau
 ---
 
-Deployed a cloud **data lakehouse** architecture consolidating multiple data sources for self-service analytics.
+Designed and implemented a **Data Lakehouse** architecture, centralizing all company data into a single source of truth.
 
-Developed high-performance data pipelines in **Python**, with **schema validation** and **unit testing** ensuring data reliability.
+Developed multi-source **Python** pipelines (**Polars**) with data quality checks using **Great Expectations** and unit testing with **Pytest**, ensuring reliability in production.
 
-Industrialized the data infrastructure using **Terraform** and orchestrated complex data workflows with **Airflow**.
+Orchestrated batch data workflows using containerized **Airflow** (**Docker**), managing scheduling, monitoring and dependencies across data jobs.
 
-Implemented analytical data modeling with **dbt**, standardizing business rules and improving data consistency.
+Implemented **dbt** models to structure datamarts, standardize business rules and auto-generate documentation, improving maintainability and accelerating onboarding for new team members.
 
-Set up observability and alerting mechanisms **(CloudWatch, Slack)**, cutting incident resolution time by **50%**.
+Set up monitoring infrastructure with **CloudWatch** and **Slack** alerts, reducing incident resolution time by **50%** and enabling proactive issue detection.
+
+Built **Tableau** dashboards to track business KPIs across marketing, operations and finance, empowering teams to make data-driven decisions.
+
+Collaborated closely with business stakeholders to gather data requirements, define specifications and prioritize developments based on business value.
