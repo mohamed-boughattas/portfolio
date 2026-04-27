@@ -2,7 +2,7 @@
 featured: true
 title: Crypto ELT Pipeline
 description: Modern ELT pipeline for cryptocurrency market analysis using Dagster, PyAirbyte, dbt, DuckDB, Polars, and Streamlit.
-image: '@assets/projects/crypto_logo.webp'
+image: '@assets/projects/crypto_logo.png'
 startDate: 2024-01-15
 skills:
   - Python
