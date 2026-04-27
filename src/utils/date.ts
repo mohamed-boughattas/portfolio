@@ -36,22 +36,4 @@ export function calculateDuration(
   }
 }
 
-export function calculateProjectDuration(
-  startDate: Date,
-  endDate?: Date,
-): string {
-  const end = endDate || new Date();
-  const months =
-    (end.getFullYear() - startDate.getFullYear()) * 12 +
-    (end.getMonth() - startDate.getMonth());
 
-  if (months < 1) return "Less than a month";
-  if (months === 1) return "1 month";
-  if (months < 12) return `${months} months`;
-
-  const years = Math.floor(months / 12);
-  const remainingMonths = months % 12;
-
-  if (remainingMonths === 0) return years === 1 ? "1 year" : `${years} years`;
-  return `${years} year${years > 1 ? "s" : ""}, ${remainingMonths} month${remainingMonths > 1 ? "s" : ""}`;
-}
