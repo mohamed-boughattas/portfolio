@@ -25,15 +25,16 @@
 - `src/pages/` — index.astro, projects/index.astro, projects/[...slug].astro
 - `src/utils/` — iconMapper.ts, date.ts (shared formatPeriod/calculateDuration)
 - `src/styles/global.css` — Tailwind + DaisyUI config (light/dark themes only)
-- `src/assets/` — Images in subdirs (hero/, projects/); referenced via `@assets/` alias
-- `CV_EN.yaml`, `CV_FR.yaml` — Source CV files (not part of build)
+- `src/assets/` — Images in subdirs (hero/, projects/); referenced via `@assets/` alias; Astro auto-optimizes PNG→WebP at build time
+- `CV_EN.yaml` — Source CV file (not part of build)
 
 ## Content Architecture
-- Hero, contact, general: single-entry YAML (`index.yaml`)
+- Hero, general: single-entry YAML (`index.yaml`); contact: single-entry Markdown (`index.md`)
 - About: single-entry Markdown (`index.md`)
 - Work: multi-entry Markdown (spareka.md, engie.md, sony.md)
 - Projects: multi-entry, each with its own subfolder
 - General config controls section visibility (showAboutSection, showSkillsSection, etc.)
+- All icon choices (socialLinks, extraLinks, contact) are constrained by `z.enum()` in `src/content.config.ts` — valid values must be used exactly as defined (e.g. "Flower2", "GitHub", "MessageCircleCode", etc.)
 
 ## Conventions
 - Git commits: `type: subject` format (fix:, chore:, refactor:, docs:, feat:)

@@ -7,7 +7,7 @@ Personal portfolio website built with Astro, showcasing my experience as a Senio
 - **Astro** v6 (static output)
 - **TailwindCSS** v4 + **DaisyUI** v5
 - **Lucide** icons
-- Content collections (YAML/MD) driven by CV source files
+- Content collections (YAML/MD) driven by content files
 
 ## Commands
 
@@ -26,7 +26,7 @@ Personal portfolio website built with Astro, showcasing my experience as a Senio
 - `src/pages/` — Routes (index, projects)
 - `src/utils/` — Shared utilities (iconMapper, date helpers)
 - `src/styles/global.css` — Tailwind + DaisyUI config
-- `CV_EN.yaml` / `CV_FR.yaml` — Source CV files (not part of build)
+- `CV_EN.yaml` — Source CV file (not part of build)
 
 ## Customization
 
