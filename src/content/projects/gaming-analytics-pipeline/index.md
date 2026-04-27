@@ -3,7 +3,7 @@ featured: true
 title: Gaming Analytics Pipeline
 description: End-to-end data engineering pipeline for gaming analytics using dlt, Prefect, SQLMesh, Soda Core, and DuckDB.
 image: '@assets/projects/gaming_logo.png'
-startDate: 2024-01-10
+startDate: 2026-03-01
 skills:
   - Python
   - Prefect
