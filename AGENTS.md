@@ -21,18 +21,18 @@
 ## Project Structure
 - `src/content/` — Content collections (hero, about, work, projects, contact, general)
 - `src/components/` — Astro components (Hero, About, Skills, Timeline, Projects, Contact, Navbar, ThemeToggle, Dock, FabFlower, SkillBadge, ProjectCard)
-- `src/layouts/` — Layout.astro, ProjectLayout.astro
-- `src/pages/` — index.astro, projects/index.astro, projects/[...slug].astro
+- `src/layouts/` — Layout.astro
+- `src/pages/` — index.astro, projects/index.astro
 - `src/utils/` — iconMapper.ts, date.ts (shared formatPeriod/calculateDuration)
 - `src/styles/global.css` — Tailwind + DaisyUI config (light/dark themes only)
-- `src/assets/` — Images in subdirs (hero/, projects/); referenced via `@assets/` alias; Astro auto-optimizes PNG→WebP at build time
+- `src/assets/` — Images in subdirs (hero/, projects/); referenced via `@assets/*` alias; Astro auto-optimizes PNG→WebP at build time
 - `CV_EN.yaml` — Source CV file (not part of build)
 
 ## Content Architecture
 - Hero, general: single-entry YAML (`index.yaml`); contact: single-entry Markdown (`index.md`)
 - About: single-entry Markdown (`index.md`)
 - Work: multi-entry Markdown (spareka.md, engie.md, sony.md)
-- Projects: multi-entry, each with its own subfolder
+- Projects: multi-entry, each with its own subfolder; frontmatter only (no markdown body); `sourceLink` is required
 - General config controls section visibility (showAboutSection, showSkillsSection, etc.)
 - All icon choices (socialLinks, extraLinks, contact) are constrained by `z.enum()` in `src/content.config.ts` — valid values must be used exactly as defined (e.g. "Flower2", "GitHub", "MessageCircleCode", etc.)
 

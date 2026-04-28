@@ -22,7 +22,7 @@ Personal portfolio website built with Astro, showcasing my experience as a Senio
 
 - `src/content/` — Content collections (hero, about, work, projects, contact, general)
 - `src/components/` — Astro components
-- `src/layouts/` — Page layouts
+- `src/layouts/` — Page layout
 - `src/pages/` — Routes (index, projects)
 - `src/utils/` — Shared utilities (iconMapper, date helpers)
 - `src/styles/global.css` — Tailwind + DaisyUI config
